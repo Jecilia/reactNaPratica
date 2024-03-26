@@ -11,6 +11,7 @@
     "server": "json-server server.json --watch --port 3333"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-select": "^2.0.0",
     "@tanstack/react-query": "^5.28.6",
     "localforage": "^1.10.0",
@@ -19,7 +20,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
-    "sort-by": "^1.2.0",
+    "sort-by": "^0.0.2",
     "tailwind-merge": "^2.2.2",
     "tailwind-variants": "^0.2.1"
   },
