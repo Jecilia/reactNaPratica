@@ -11,6 +11,16 @@ const createTagSchema = z.object({
 })
 
 type CreateTagSchema = z.infer<typeof createTagSchema>
+
+function getSlugFromString(input: string): string {
+  if (!input) return ''
+  return input
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^\w\s]/g, '')
+    .replace(/\s+/g, '-')
+}
 export function CreateTagForm() {
   const { register, handleSubmit, watch } = useForm<CreateTagSchema>({
     resolver: zodResolver(createTagSchema),
@@ -18,7 +28,8 @@ export function CreateTagForm() {
   function createTag(data: CreateTagSchema) {
     console.log(data)
   }
-  const slug = watch('name')
+  const slug = getSlugFromString(watch('name'))
+  // const slug = watch('name')
 
   return (
     <form onSubmit={handleSubmit(createTag)} className="w-full space-y-6">
