@@ -26,7 +26,7 @@ export function CreateTagForm() {
     resolver: zodResolver(createTagSchema),
   })
   async function createTag({ name, slug }: CreateTagSchema) {
-   await fetch('http://localhost:3333/tags', {
+    await fetch('http://localhost:3333/tags', {
       method: 'POST',
       body: JSON.stringify({
         name,
@@ -34,8 +34,8 @@ export function CreateTagForm() {
       }),
     })
   }
-  const slug = getSlugFromString(watch('name'))
-  // const slug = watch('name')
+  const name = watch('name')
+  const slug = name ? getSlugFromString(name) : ''
 
   return (
     <form onSubmit={handleSubmit(createTag)} className="w-full space-y-6">
