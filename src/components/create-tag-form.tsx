@@ -25,8 +25,14 @@ export function CreateTagForm() {
   const { register, handleSubmit, watch } = useForm<CreateTagSchema>({
     resolver: zodResolver(createTagSchema),
   })
-  function createTag(data: CreateTagSchema) {
-    console.log(data)
+  async function createTag({ name, slug }: CreateTagSchema) {
+   await fetch('http://localhost:3333/tags', {
+      method: 'POST',
+      body: JSON.stringify({
+        name,
+        slug,
+      }),
+    })
   }
   const slug = getSlugFromString(watch('name'))
   // const slug = watch('name')

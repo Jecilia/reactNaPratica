@@ -22,6 +22,7 @@ import { CreateTagForm } from './components/create-tag-form'
 
 export interface Tag {
   title: string
+  slug: string
   amountOfVideos: number
   id: string
 }
@@ -148,7 +149,7 @@ export function App() {
                   <TableCell>
                     <div className="flex flex-col gap-0.5">
                       <span className="font-medium">{tag.title}</span>
-                      <span className="text-xs text-zinc-500 ">{tag.id}</span>
+                      <span className="text-xs text-zinc-500 ">{tag.slug}</span>
                     </div>
                   </TableCell>
                   <TableCell className="text-zinc-500">
