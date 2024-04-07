@@ -56,14 +56,14 @@ export function CreateTagForm() {
   return (
     <form onSubmit={handleSubmit(createTag)} className="w-full space-y-6">
       <div className="space-y-2">
-        <label htmlFor="title" className="text-sm font-medium block">
+        <label htmlFor="title" className="block text-sm font-medium">
           Tag name
         </label>
         <input
           {...register('title')}
           id="title"
           type="text"
-          className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-800/50 w-full text-sm"
+          className="w-full rounded-lg border border-zinc-800 bg-zinc-800/50 px-3 py-2.5 text-sm"
         />
         {formState.errors?.title && (
           <p className="text-sm text-red-400">
@@ -72,7 +72,7 @@ export function CreateTagForm() {
         )}
       </div>
       <div className="space-y-2">
-        <label htmlFor="slug" className="text-sm font-medium block">
+        <label htmlFor="slug" className="block text-sm font-medium">
           Slug
         </label>
         <input
@@ -80,7 +80,7 @@ export function CreateTagForm() {
           type="text"
           readOnly
           value={slug}
-          className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-800/50 w-full text-sm"
+          className="w-full rounded-lg border border-zinc-800 bg-zinc-800/50 px-3 py-2.5 text-sm"
         />
       </div>
       <div className="flex items-center justify-end gap-2">

@@ -5,7 +5,7 @@ import { Rock } from '../assets/rock'
 
 export function Header() {
   return (
-    <div className="max-w-[1200px] mx-auto flex items-center justify-between">
+    <div className="mx-auto flex max-w-[1200px] items-center justify-between">
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2.5">
           <Logo />
@@ -26,7 +26,7 @@ export function Header() {
 
           <Badge variant="primary">PRO</Badge>
 
-          <ChevronDown className="text-zinc-600 size-4" />
+          <ChevronDown className="size-4 text-zinc-600" />
         </div>
 
         <svg
@@ -48,7 +48,7 @@ export function Header() {
         <div className="flex items-center gap-2.5">
           <span className="text-sm font-medium text-zinc-100">Ignite</span>
 
-          <ChevronDown className="text-zinc-600 size-4" />
+          <ChevronDown className="size-4 text-zinc-600" />
         </div>
       </div>
 
