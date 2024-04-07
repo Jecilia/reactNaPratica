@@ -1,4 +1,4 @@
-import { Check, X } from 'lucide-react'
+import { Check, Loader2, X } from 'lucide-react'
 import { Button } from './ui/button'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -21,11 +21,16 @@ function getSlugFromString(input: string): string {
     .replace(/\s+/g, '-')
 }
 export function CreateTagForm() {
-  const { register, handleSubmit, watch } = useForm<CreateTagSchema>({
-    resolver: zodResolver(createTagSchema),
-  })
+  const { register, handleSubmit, watch, formState } = useForm<CreateTagSchema>(
+    {
+      resolver: zodResolver(createTagSchema),
+    },
+  )
   const slug = watch('title') ? getSlugFromString(watch('title')) : ''
+
   async function createTag({ title }: CreateTagSchema) {
+    // delay 2s
+    await new Promise((resolve) => setTimeout(resolve, 2000))
     console.log({ title, slug })
     await fetch('http://localhost:3333/tags', {
       method: 'POST',
@@ -49,6 +54,11 @@ export function CreateTagForm() {
           type="text"
           className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-800/50 w-full text-sm"
         />
+        {formState.errors?.title && (
+          <p className="text-sm text-red-400">
+            {formState.errors.title.message}
+          </p>
+        )}
       </div>
       <div className="space-y-2">
         <label htmlFor="slug" className="text-sm font-medium block">
@@ -70,8 +80,16 @@ export function CreateTagForm() {
           </Button>
         </Dialog.Close>
 
-        <Button type="submit" className="bg-teal-400 text-teal-900">
-          <Check className="size-3" />
+        <Button
+          disabled={formState.isSubmitting}
+          type="submit"
+          className="bg-teal-400 text-teal-900"
+        >
+          {formState.isSubmitting ? (
+            <Loader2 className="size-3 animate-spin" />
+          ) : (
+            <Check className="size-3" />
+          )}
           Save
         </Button>
       </div>
